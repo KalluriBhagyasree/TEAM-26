@@ -1,16 +1,70 @@
-# React + Vite
+# 📩 T8) SMS Spam Filter (Telco Messaging)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🧩 Problem Statement
+Telecom messaging gateways handle millions of SMS messages daily, including a large number of spam messages.  
+The goal of this project is to **classify SMS messages as Spam or Ham (Not Spam)** to improve message quality, security, and user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📊 Dataset
+- **Name:** SMS Spam Collection Dataset  
+- **Source:** Kaggle  
+- **Link:** https://www.kaggle.com/uciml/sms-spam-collection-dataset  
 
-## React Compiler
+The dataset contains labeled SMS messages categorized as **spam** or **ham**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🎯 Objective
+- Build a machine learning model to detect SMS spam.
+- Apply **text preprocessing and tokenization**.
+- Train a **baseline classifier**.
+- Enhance predictions using **rule-based filtering**.
+- Export predictions for integration with a telco messaging gateway.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+- SMS text preprocessing and cleaning
+- Tokenization using NLP techniques
+- Spam classification using:
+  - Naive Bayes (NB)
+  - Support Vector Machine (SVM)
+- Rule-based detection:
+  - URL detection
+  - Profanity keyword filtering
+- Export prediction results to CSV
+- Scalable design for telco gateways
+
+---
+
+## 🛠️ Technology Stack
+- **Programming Language:** Python  
+- **Machine Learning:** scikit-learn  
+- **Text Processing:** Regex, NLP  
+- **Optional:** Hugging Face pretrained text classifier  
+
+---
+
+## ⚙️ System Workflow
+1. Load and preprocess SMS data  
+2. Clean text (lowercasing, stopwords, punctuation removal)  
+3. Tokenize messages  
+4. Train ML models (NB / SVM)  
+5. Apply rule-based spam detection (URLs, profanity)  
+6. Generate final predictions  
+7. Export results  
+
+---
+
+## 📂 Project Structure
+```bash
+sms-spam-filter/
+│── data/                # Dataset
+│── preprocessing/       # Text cleaning & tokenization
+│── models/              # NB & SVM models
+│── rules/               # Regex-based spam rules
+│── predictions/         # Output files
+│── main.py              # Entry point
+│── requirements.txt
+│── README.md

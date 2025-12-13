@@ -82,3 +82,65 @@ body {
   line-height: 1.5;
   word-wrap: break-word;
 }
+/* Center card */
+.inputCard {
+  max-width: 500px;
+  margin: 80px auto;
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+  text-align: center;
+}
+
+/* Title */
+.title {
+  color: #00f2ff;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* Textarea */
+.inputBox {
+  width: 100%;
+  height: 120px;
+  background-color: #0f0f0f;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+}
+
+.inputBox:focus {
+  border-color: #00f2ff;
+  box-shadow: 0 0 8px rgba(0, 242, 255, 0.4);
+}
+
+/* Button */
+.checkBtn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: #00f2ff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkBtn:hover {
+  background-color: #00c8d6;
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.6);
+}
+
+/* Result text */
+.result {
+  margin-top: 20px;
+  color: #fff;
+  font-size: 0.95rem;
+}

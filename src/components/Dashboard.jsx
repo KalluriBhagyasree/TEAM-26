@@ -21,12 +21,21 @@ const Dashboard = () => {
 
   // 🔹 Button handler
   const handleCheck = () => {
-    if (message.trim() === '') {
-      setResult('Please enter a message');
-    } else {
-      setResult('Message received (AI check coming soon)');
-    }
-  };
+  if (message.trim() === '') {
+    setResult('Please enter a message');
+    return;
+  }
+
+  fetch('http://127.0.0.1:5000/predict', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message })
+  })
+    .then(res => res.json())
+    .then(data => setResult(data.result))
+    .catch(err => console.error(err));
+};
+
 
   return (
     <div className="container">
@@ -43,7 +52,7 @@ const Dashboard = () => {
         />
 
         <button className="checkBtn" onClick={handleCheck}>
-          Check Spam
+          Analyze Message
         </button>
 
         {result && <div className="result">{result}</div>}

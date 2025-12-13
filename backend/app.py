@@ -6,40 +6,34 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Load AI model
+# Load model
 model = pickle.load(open('model.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
+# ------------------ LOAD DATA ------------------
 @app.route('/messages', methods=['GET'])
-def load_data():
-    datafile = pd.read_csv('spam.csv', encoding='latin-1')
-    datafile = datafile[['v1', 'v2']]
-    datafile.columns = ['label', 'message']
+def messages():
+    df = pd.read_csv('spam.csv', encoding='latin-1')
+    df = df[['v1', 'v2']]
+    df.columns = ['label', 'message']
+    df['isSpam'] = df['label'] == 'spam'
 
-    is_spam_list = []
-    for label in datafile['label']:
-        if label == 'spam':
-            is_spam_list.append(True)
-        else:
-            is_spam_list.append(False)
+    return jsonify(df[['message', 'isSpam']].to_dict(orient='records'))
 
-    datafile['isSpam'] = is_spam_list
-    return jsonify(datafile[['message', 'isSpam']].to_dict(orient='records'))
-
-
+# ------------------ PREDICT ------------------
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    if request.method == 'GET':
-        return jsonify({'message': 'Send a POST request with JSON to predict spam'})
+    data = request.get_json()
 
-    data = request.json
-    message = data.get('message')
-    vector = vectorizer.transform([message])
+    if 'message' not in data:
+        return jsonify({'error': 'Message is required'}), 400
+
+    vector = vectorizer.transform([data['message']])
     prediction = model.predict(vector)[0]
 
-    result = "SPAM" if prediction == 1 else "HAM"
-    return jsonify({'result': result})
-
+    return jsonify({
+        'result': 'SPAM' if prediction == 1 else 'HAM'
+    })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)

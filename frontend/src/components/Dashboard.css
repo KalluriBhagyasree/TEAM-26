@@ -144,3 +144,13 @@ body {
   color: #fff;
   font-size: 0.95rem;
 }
+
+.container {
+  display: flex;
+}
+
+.mainContent {
+  margin-left: 220px;  /* Same as sidebar width */
+  padding: 20px;
+  flex: 1;
+}

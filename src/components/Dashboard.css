@@ -1,166 +1,84 @@
-/* Dashboard.css */
+body {
+  margin: 0;
+  background-color: #0f0f0f;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-/* Container and layout */
 .container {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  background-color: #121212;
-  color: #e0e0e0;
-  font-family: 'Inter', sans-serif;
-  overflow: hidden;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #1E1E1E;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  border-right: 1px solid #333;
-}
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #00f2ff;
-  margin-bottom: 40px;
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-  letter-spacing: 1px;
-}
-.navItem {
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: #aaa;
-  border-left: 3px solid transparent;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.3s ease;
-}
-.navItem.active {
-  background-color: rgba(0, 242, 255, 0.1);
-  color: #00f2ff;
-  border-left: 3px solid #00f2ff;
-}
-
-/* Main content */
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.navbar {
-  height: 70px;
-  background-color: #1E1E1E;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-  border-bottom: 1px solid #333;
-}
-.tabTitle {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-.searchBar {
-  background-color: #121212;
-  border: 1px solid #333;
-  border-radius: 20px;
-  padding: 8px 20px;
-  color: #fff;
-  width: 300px;
-  outline: none;
-}
-.navIcons {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.profileIcon {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background-color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh;
+  padding: 30px;
+  background-color: #0f0f0f;
 }
 
 /* Content area */
 .content {
-  flex: 1;
-  padding: 30px;
-  overflow-y: auto;
+  max-width: 1200px;
+  margin: auto;
 }
-.sectionTitle {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #fff;
-}
+
+/* Grid layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
+
+/* Message card */
 .card {
-  background-color: #1E1E1E;
+  background-color: #1a1a1a;
   border-radius: 12px;
-  padding: 20px;
-  border: 1px solid #333;
+  padding: 18px;
   position: relative;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
 }
+
+/* Spam card highlight */
 .spamCard {
-  border: 1px solid #ff003c;
+  border-color: #ff003c;
+  box-shadow: 0 0 12px rgba(255, 0, 60, 0.4);
 }
+
+/* Status dot */
 .statusIndicator {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 10px;
-  height: 10px;
+  top: 16px;
+  right: 16px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  box-shadow: 0 0 10px;
 }
+
+/* Spam / Ham colors */
 .statusIndicator.spam {
   background-color: #ff003c;
-  box-shadow: 0 0 10px #ff003c;
+  box-shadow: 0 0 8px #ff003c;
 }
+
 .statusIndicator.ham {
   background-color: #00ff6a;
-  box-shadow: 0 0 10px #00ff6a;
+  box-shadow: 0 0 8px #00ff6a;
 }
+
+/* Sender label */
 .sender {
+  font-size: 0.85rem;
   font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-  color: #fff;
+  letter-spacing: 1px;
+  color: #00f2ff;
+  margin-bottom: 8px;
 }
+
+/* Message text */
 .messagePreview {
-  color: #aaa;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin-bottom: 15px;
-}
-.timestamp {
-  font-size: 0.8rem;
-  color: #555;
-  margin-top: auto;
-}
-.spamLabel {
-  margin-top: 10px;
-  color: #ff003c;
-  font-size: 0.8rem;
-  border: 1px solid #ff003c;
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 4px;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  line-height: 1.5;
+  word-wrap: break-word;
 }

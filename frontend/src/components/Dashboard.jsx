@@ -9,6 +9,8 @@ const Dashboard = () => {
   const [result, setResult] = useState('');
   const [activeTab, setActiveTab] = useState('analyze');
   const [messages, setMessages] = useState([]);
+  const [showProfile, setShowProfile] = useState(false);
+
   
   // OTP/Login states
   const [name, setName] = useState('');
@@ -78,45 +80,60 @@ const Dashboard = () => {
   };
 
   // ----------------- Render -----------------
-  if (!user) {
-    // Login screen
-    return (
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
+if (!user) {
+  return (
+    <div className="loginPage">
+      <div className="loginCard">
+        <h2 className="loginTitle">📱 Login / Register</h2>
+
         {!otpSent ? (
           <>
-            <h2>Login / Register</h2>
             <input
-              placeholder="Name"
+              className="loginInput"
+              placeholder="Full Name"
               value={name}
               onChange={e => setName(e.target.value)}
-              style={styles.input}
             />
+
             <input
+              className="loginInput"
               placeholder="Phone Number"
               value={phone}
               onChange={e => setPhone(e.target.value)}
-              style={styles.input}
             />
-            <button onClick={sendOtp} style={styles.button}>Send OTP</button>
+
+            <button className="loginBtn" onClick={sendOtp}>
+              Send OTP
+            </button>
           </>
         ) : (
           <>
             <input
+              className="loginInput"
               placeholder="Enter OTP"
               value={otp}
               onChange={e => setOtp(e.target.value)}
-              style={styles.input}
             />
-            <button onClick={verifyOtp} style={styles.button}>Verify OTP</button>
+
+            <button className="loginBtn" onClick={verifyOtp}>
+              Verify OTP
+            </button>
           </>
         )}
       </div>
-    );
-  }
+    </div>
+  );
+}
+
 
   return (
     <div className="container">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar
+  activeTab={activeTab}
+  setActiveTab={setActiveTab}
+  onProfileClick={() => setShowProfile(true)}
+/>
+
 
       <div className="mainContent">
         {/* Sender Spam Checker */}
@@ -173,6 +190,24 @@ const Dashboard = () => {
           </div>
         )}
       </div>
+      {showProfile && (
+  <div className="profileOverlay">
+    <div className="profileCard">
+      <h2>👤 User Profile</h2>
+
+      <p><strong>Name:</strong> {user.name}</p>
+      <p><strong>Phone:</strong> {user.phone}</p>
+
+      <button
+        className="closeBtn"
+        onClick={() => setShowProfile(false)}
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

@@ -7,6 +7,13 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       <h2 className="logo">AI SMS</h2>
 
       <button
+  className={activeTab === "senderSpam" ? "active" : ""}
+  onClick={() => setActiveTab("senderSpam")}
+>
+  Sender Spam Checker
+</button>
+
+      <button
         className={activeTab === 'analyze' ? 'active' : ''}
         onClick={() => setActiveTab('analyze')}
       >
